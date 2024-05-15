@@ -5,5 +5,5 @@ import javafx.scene.layout.Pane;
 
 public interface Puzzle {
     int getPuzzleSize();
-    Button getPuzzleButton(int index);
+    PuzzlePieceButton getPuzzleButton(int index);
 }

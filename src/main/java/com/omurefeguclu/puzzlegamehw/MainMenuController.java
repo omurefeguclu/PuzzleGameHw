@@ -38,14 +38,11 @@ public class MainMenuController {
             double pieceSize = puzzlesContainer.getPrefWidth() / puzzle.getPuzzleSize();
 
             for(int i = 0; i < pieceCount; i++) {
-                Button button = puzzle.getPuzzleButton(i);
-
-                int rowIndex = i / puzzle.getPuzzleSize();
-                int columnIndex = i % puzzle.getPuzzleSize();
+                PuzzlePieceButton button = puzzle.getPuzzleButton(i);
 
                 button.setMinSize(pieceSize, pieceSize);
 
-                puzzleGrid.add(button, columnIndex, rowIndex);
+                puzzleGrid.add(button, button.correctPositionX, button.correctPositionY);
             }
 
             puzzlesContainer.getChildren().add(puzzleGrid);

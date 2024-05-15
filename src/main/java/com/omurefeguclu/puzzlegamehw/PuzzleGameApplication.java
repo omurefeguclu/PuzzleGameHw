@@ -68,6 +68,7 @@ public class PuzzleGameApplication extends Application {
         }
         catch(IOException exception) {
             System.out.println("startnewgame: ioexception");
+            exception.printStackTrace();
         }
 
     }

@@ -30,12 +30,12 @@ public class GameManager {
 
             puzzles[i] = new NumberPuzzle(puzzleSize);
         }
-/*
+
         for(int i = 0; i < GameConfiguration.IMAGE_PUZZLE_FILES.length; i++) {
             String imagePath = GameConfiguration.IMAGE_PUZZLE_FILES[i];
 
-            puzzles[i + numberPuzzleCount] = new ImagePuzzle(imagePath);
+            puzzles[i + numberPuzzleCount] = new ImagePuzzle(getClass().getResource(imagePath).toString(), 3);
         }
-*/
+
     }
 }
