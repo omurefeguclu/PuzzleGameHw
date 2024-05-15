@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 
 public class MainMenuController {
 
@@ -75,5 +76,5 @@ public class MainMenuController {
     }
 
     @FXML private AnchorPane puzzlesContainer;
-    @FXML public Button playButton;
+    @FXML public StackPane playButton;
 }

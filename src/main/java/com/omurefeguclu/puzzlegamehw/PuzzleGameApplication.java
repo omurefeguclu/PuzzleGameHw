@@ -30,7 +30,7 @@ public class PuzzleGameApplication extends Application {
 
         MainMenuController controller = fxmlLoader.getController();
 
-        controller.playButton.setOnAction(e -> {
+        controller.playButton.setOnMouseClicked(e -> {
             this.StartNewGame(controller.getSelectedPuzzleIndex());
         });
 

@@ -5,17 +5,17 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<VBox alignment="TOP_CENTER" prefHeight="343.0" prefWidth="402.0" spacing="20.0" style="-fx-background-color: #F8FAFC;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="com.omurefeguclu.puzzlegamehw.MainMenuController">
+<VBox alignment="TOP_CENTER" prefHeight="343.0" prefWidth="402.0" spacing="20.0" styleClass="background" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.omurefeguclu.puzzlegamehw.MainMenuController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
+
    <ImageView fitHeight="92.0" fitWidth="239.0" pickOnBounds="true" smooth="false">
       <image>
          <Image url="@logo-fake.png" />
@@ -23,30 +23,43 @@
    </ImageView>
    <HBox alignment="CENTER" prefHeight="151.0" prefWidth="318.0" spacing="16.0">
       <children>
-         <Button onAction="#rollbackPuzzle"  mnemonicParsing="false" prefHeight="52.0" prefWidth="52.0">
+         <Button graphicTextGap="0.0" maxHeight="64.0" maxWidth="64.0" mnemonicParsing="false" onAction="#rollbackPuzzle" prefHeight="64.0" prefWidth="64.0" style="-fx-background-color: transparent;">
             <graphic>
-               <ImageView fitHeight="41.0" fitWidth="37.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
+               <ImageView fitHeight="64.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
                   <image>
-                     <Image url="@NavigateRightIcon.png" />
+                     <Image url="@ArrowLeft.png" />
                   </image>
                </ImageView>
             </graphic>
          </Button>
          <AnchorPane fx:id="puzzlesContainer" prefHeight="155.0" prefWidth="130.0">
          </AnchorPane>
-         <Button onAction="#advancePuzzle" layoutX="10.0" layoutY="49.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="52.0">
+         <Button layoutX="10.0" layoutY="49.0" maxHeight="64.0" maxWidth="64.0" mnemonicParsing="false" onAction="#advancePuzzle" prefHeight="64.0" prefWidth="64.0" style="-fx-background-color: transparent;">
             <graphic>
-               <ImageView fitHeight="41.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+               <ImageView fitHeight="64.0" fitWidth="64.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
                   <image>
-                     <Image url="@NavigateRightIcon.png" />
+                     <Image url="@ArrowLeft.png" />
                   </image>
                </ImageView>
             </graphic>
          </Button>
       </children>
    </HBox>
-    <Button fx:id="playButton" prefHeight="61.0" prefWidth="139.0" style="-fx-background-color: #F97316; -fx-text-fill: #fff; -fx-background-radius: 20px;" text="Play" textAlignment="CENTER" textFill="WHITE">
-      <font>
-         <Font name="SansSerif Bold" size="22.0" />
-      </font></Button>
+   <StackPane fx:id="playButton" prefHeight="150.0" prefWidth="200.0">
+      <children>
+         <ImageView fitHeight="70.0" fitWidth="160.0">
+            <image>
+               <Image url="@Btn_OtherButton_Polygon02.png" />
+            </image>
+         </ImageView>
+         <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="PLAY!" textAlignment="CENTER" wrappingWidth="85.0107421875" StackPane.alignment="CENTER">
+            <font>
+               <Font name="SansSerif Bold" size="24.0" />
+            </font>
+            <StackPane.margin>
+               <Insets top="-12.0" />
+            </StackPane.margin>
+         </Text>
+      </children>
+   </StackPane>
 </VBox>
