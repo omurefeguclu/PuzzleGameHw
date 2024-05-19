@@ -25,11 +25,37 @@ public class GameController {
         puzzleGrid = new PuzzleGrid(currentPuzzle, puzzleContainer.getPrefWidth());
 
         //puzzleGrid.Shuffle();
+        Shuffle();
 
         LayoutAnimator animator = new LayoutAnimator();
         animator.observe(puzzleGrid.getChildren());
 
         puzzleContainer.getChildren().add(puzzleGrid);
+    }
+
+    private void Shuffle(){
+        Random random = new Random();
+
+        int i = 0;
+        while(i++ < 1000){
+            int movement = random.nextInt(4);
+
+            switch(movement)
+            {
+                case 0:
+                    OnHorizontalMoveInput(true);
+                    break;
+                case 1:
+                    OnHorizontalMoveInput(false);
+                    break;
+                case 2:
+                    OnVerticalMoveInput(true);
+                    break;
+                case 3:
+                    OnVerticalMoveInput(false);
+                    break;
+            }
+        }
     }
 
     public void OnHorizontalMoveInput(boolean right) {
@@ -59,7 +85,6 @@ public class GameController {
 
         ProMovement();
     }
-
     public void OnVerticalMoveInput(boolean up) {
         System.out.println("vertical move" + up);
 

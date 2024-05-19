@@ -25,7 +25,7 @@ public class PuzzleGameApplication extends Application {
 
     public void OpenMainMenu() throws IOException {
 
-        FXMLLoader fxmlLoader = new FXMLLoader(PuzzleGameApplication.class.getResource("main-menu.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(PuzzleGameApplication.class.getResource("views/main-menu.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
 
         MainMenuController controller = fxmlLoader.getController();
@@ -43,7 +43,7 @@ public class PuzzleGameApplication extends Application {
         GameManager.getInstance().currentPuzzle = puzzle;
 
         try{
-            FXMLLoader fxmlLoader = new FXMLLoader(PuzzleGameApplication.class.getResource("game-screen.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(PuzzleGameApplication.class.getResource("views/game-screen.fxml"));
             Scene scene = new Scene(fxmlLoader.load());
 
             GameController controller = fxmlLoader.getController();
@@ -63,12 +63,9 @@ public class PuzzleGameApplication extends Application {
             });
 
             primaryStage.setScene(scene);
-
-            System.out.println("event fired!");
         }
         catch(IOException exception) {
-            System.out.println("startnewgame: ioexception");
-            exception.printStackTrace();
+            System.out.println("Start New Game: ioexception");
         }
 
     }

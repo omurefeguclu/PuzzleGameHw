@@ -14,7 +14,7 @@ public class PuzzlePieceButton extends Button {
 
     public PuzzlePieceButton(String num, int correctPositionX, int correctPositionY) {
 
-        this.setStyle("-fx-background-color: #1D4ED8; -fx-background-radius: 0; -fx-border-radius: 0; -fx-font-family: SansSerif; -fx-font-weight: bold; -fx-font-size: 12; -fx-text-fill: #fff;");
+        this.getStyleClass().add("number-puzzle-button");
         this.setText(num);
 
         InitPosition(correctPositionX, correctPositionY);

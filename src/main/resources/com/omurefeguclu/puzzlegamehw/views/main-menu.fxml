@@ -11,14 +11,14 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="TOP_CENTER" prefHeight="343.0" prefWidth="402.0" spacing="20.0" styleClass="background" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.omurefeguclu.puzzlegamehw.MainMenuController">
+<VBox alignment="TOP_CENTER" prefHeight="343.0" prefWidth="402.0" spacing="20.0" styleClass="background" stylesheets="@../styles/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.omurefeguclu.puzzlegamehw.MainMenuController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
 
    <ImageView fitHeight="92.0" fitWidth="239.0" pickOnBounds="true" smooth="false">
       <image>
-         <Image url="@logo-fake.png" />
+         <Image url="@../logo-fake.png" />
       </image>
    </ImageView>
    <HBox alignment="CENTER" prefHeight="151.0" prefWidth="318.0" spacing="16.0">
@@ -27,7 +27,7 @@
             <graphic>
                <ImageView fitHeight="64.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
                   <image>
-                     <Image url="@ArrowLeft.png" />
+                     <Image url="@../ui/wooden-theme-arrow-left.png" />
                   </image>
                </ImageView>
             </graphic>
@@ -38,7 +38,7 @@
             <graphic>
                <ImageView fitHeight="64.0" fitWidth="64.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
                   <image>
-                     <Image url="@ArrowLeft.png" />
+                     <Image url="@../ui/wooden-theme-arrow-left.png" />
                   </image>
                </ImageView>
             </graphic>
@@ -49,13 +49,10 @@
       <children>
          <ImageView fitHeight="70.0" fitWidth="160.0">
             <image>
-               <Image url="@Btn_OtherButton_Polygon02.png" />
+               <Image url="@../ui/Btn_OtherButton_Polygon02.png" />
             </image>
          </ImageView>
-         <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="PLAY!" textAlignment="CENTER" wrappingWidth="85.0107421875" StackPane.alignment="CENTER">
-            <font>
-               <Font name="SansSerif Bold" size="24.0" />
-            </font>
+         <Text fill="WHITE" styleClass="wooden-font" style="-fx-font-size: 18pt;" strokeType="OUTSIDE" strokeWidth="0.0" text="PLAY!" textAlignment="CENTER" wrappingWidth="85.0107421875" StackPane.alignment="CENTER">
             <StackPane.margin>
                <Insets top="-12.0" />
             </StackPane.margin>

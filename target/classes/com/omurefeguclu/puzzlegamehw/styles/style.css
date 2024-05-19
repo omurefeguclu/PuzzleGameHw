@@ -1,0 +1,35 @@
+@font-face {
+    src: url('../BungeeSpice-Regular.ttf');
+}
+
+.wooden-font {
+    -fx-font-family: 'Bungee Spice Regular';
+}
+
+.background {
+    -fx-background-image: url('../ui/Background-1.png');
+    -fx-background-position:center center;
+    -fx-background-repeat: stretch;
+    -fx-background-size: auto;
+}
+
+.raised-button {
+    -fx-background-image: url('../ui/wooden-text-button.png');
+    -fx-background-position: center center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 100% 100%;
+}
+
+.number-puzzle-button {
+    -fx-background-image: url('../ui/wooden-button-frame.png');
+    -fx-background-position: center center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 120% 120%;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+    -fx-font-family: 'Bungee Spice Regular';
+    -fx-font-weight: 400;
+    -fx-font-style: normal;
+    -fx-font-size: 12px;
+    -fx-text-fill: #9E500E;
+}

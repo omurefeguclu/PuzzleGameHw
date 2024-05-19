@@ -23,8 +23,6 @@ public class NumberPuzzle implements Puzzle {
     public PuzzlePieceButton getPuzzleButton(int index){
         PuzzlePieceButton button = new PuzzlePieceButton(STR."\{index + 1}", index % puzzleSize, index / puzzleSize);
 
-        //System.out.println("puzzleSize : " + this.puzzleSize + ", number: " + (index + 1));
-
         return button;
     }
 

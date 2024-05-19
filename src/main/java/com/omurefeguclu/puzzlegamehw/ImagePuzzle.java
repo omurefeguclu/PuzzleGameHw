@@ -28,13 +28,11 @@ public class ImagePuzzle implements Puzzle {
     public PuzzlePieceButton getPuzzleButton(int index){
         int colIndex = index % puzzleSize;
         int rowIndex = index / puzzleSize;
-        System.out.println(colIndex + ", " + rowIndex);
 
         PixelReader reader = this.image.getPixelReader();
         int width = (int)(image.getWidth() / puzzleSize);
         int height = (int)(image.getHeight() / puzzleSize);
 
-        System.out.println(width + ", " + height);
         WritableImage tileImage = new WritableImage(reader, colIndex * width, rowIndex * height, width, height);
 
         PuzzlePieceButton button = new PuzzlePieceButton(tileImage, colIndex, rowIndex);
