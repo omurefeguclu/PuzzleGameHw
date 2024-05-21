@@ -23,18 +23,25 @@ public class PuzzleGameApplication extends Application {
         primaryStage.show();
     }
 
-    public void OpenMainMenu() throws IOException {
+    public void OpenMainMenu() {
 
-        FXMLLoader fxmlLoader = new FXMLLoader(PuzzleGameApplication.class.getResource("views/main-menu.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
+        try
+        {
+            FXMLLoader fxmlLoader = new FXMLLoader(PuzzleGameApplication.class.getResource("views/main-menu.fxml"));
+            Scene scene = new Scene(fxmlLoader.load());
 
-        MainMenuController controller = fxmlLoader.getController();
+            MainMenuController controller = fxmlLoader.getController();
 
-        controller.playButton.setOnMouseClicked(e -> {
-            this.StartNewGame(controller.getSelectedPuzzleIndex());
-        });
+            controller.playButton.setOnMouseClicked(e -> {
+                this.StartNewGame(controller.getSelectedPuzzleIndex());
+            });
 
-        primaryStage.setScene(scene);
+            primaryStage.setScene(scene);
+        }
+        catch(IOException ioException) {
+            System.out.println("Open Main Menu: ioexception");
+        }
+
     }
 
     public void StartNewGame(int puzzleIndex){
@@ -48,6 +55,9 @@ public class PuzzleGameApplication extends Application {
 
             GameController controller = fxmlLoader.getController();
 
+            controller.closeButton.setOnMouseClicked(e -> {
+                this.OpenMainMenu();
+            });
             scene.setOnKeyReleased(new EventHandler<KeyEvent>() {
                 @Override
                 public void handle(KeyEvent event) {

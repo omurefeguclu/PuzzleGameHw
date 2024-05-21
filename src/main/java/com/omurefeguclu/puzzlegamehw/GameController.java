@@ -1,11 +1,18 @@
 package com.omurefeguclu.puzzlegamehw;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
+import javafx.util.Duration;
 
 import java.util.Random;
 
@@ -14,8 +21,11 @@ public class GameController {
     private Puzzle currentPuzzle;
     private int blankPuzzleSlotX, blankPuzzleSlotY;
 
-
     private PuzzleGrid puzzleGrid;
+
+    private Timeline timerTimeline;
+    private boolean gameActive = true;
+    private int time = GameConfiguration.PUZZLE_TIME;
 
     @FXML private void initialize()
     {
@@ -31,6 +41,24 @@ public class GameController {
         animator.observe(puzzleGrid.getChildren());
 
         puzzleContainer.getChildren().add(puzzleGrid);
+
+
+        PuzzleGrid completedPuzzleGrid = new PuzzleGrid(currentPuzzle, completedPuzzleContainer.getPrefWidth());
+        completedPuzzleContainer.getChildren().add(completedPuzzleGrid);
+
+        UpdateTimer();
+        timerTimeline = new Timeline();
+        timerTimeline.setCycleCount(Timeline.INDEFINITE);
+        timerTimeline.getKeyFrames().add(
+                new KeyFrame(Duration.seconds(1),
+                        new EventHandler<ActionEvent>() {
+                            // KeyFrame event handler
+                            public void handle(ActionEvent event) {
+                                time--;
+                                UpdateTimer();
+                            }
+                        }));
+        timerTimeline.playFromStart();
     }
 
     private void Shuffle(){
@@ -59,7 +87,8 @@ public class GameController {
     }
 
     public void OnHorizontalMoveInput(boolean right) {
-        System.out.println("horizontal move" + right);
+        if(!gameActive)
+            return;
 
 
         if(right) {
@@ -86,8 +115,8 @@ public class GameController {
         ProMovement();
     }
     public void OnVerticalMoveInput(boolean up) {
-        System.out.println("vertical move" + up);
-
+        if(!gameActive)
+            return;
 
         if(!up) {
             if(blankPuzzleSlotY==0)
@@ -114,13 +143,38 @@ public class GameController {
         ProMovement();
     }
 
+
+    private void UpdateTimer(){
+        timeText.setText(STR."TIME: \{time}");
+        if (time <= 0) {
+            timerTimeline.stop();
+            TimerEnded();
+        }
+    }
+    private void TimerEnded()
+    {
+        this.gameActive = false;
+
+        System.out.println("Game Over! YOU LOST");
+        timeText.setText("Game Over!\n YOU LOST");
+    }
     private void ProMovement()
     {
         if(this.puzzleGrid.isCorrect()){
+            this.gameActive = false;
+
             System.out.println("Game Over! YOU WIN");
+            timeText.setText("Game Over!\n YOU WIN");
         }
+
     }
 
     @FXML
     private AnchorPane puzzleContainer;
+    @FXML
+    private Pane completedPuzzleContainer;
+    @FXML
+    public Pane closeButton;
+    @FXML
+    private Text timeText;
 }
