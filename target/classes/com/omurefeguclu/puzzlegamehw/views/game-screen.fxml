@@ -25,13 +25,13 @@
             </ImageView>
          </children>
       </Pane>
-      <VBox alignment="TOP_CENTER" layoutX="361.0" layoutY="13.0" prefHeight="372.0" prefWidth="183.0" AnchorPane.bottomAnchor="16.0" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="16.0">
+      <VBox alignment="TOP_CENTER" fillWidth="false" layoutX="361.0" layoutY="13.0" prefHeight="372.0" prefWidth="183.0" AnchorPane.bottomAnchor="16.0" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="16.0">
          <padding>
             <Insets bottom="20.0" left="16.0" top="20.0" />
          </padding>
          <children>
             <Text fx:id="timeText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 16pt;" styleClass="wooden-font" text="TIME: 60" textAlignment="CENTER" />
-            <Pane fx:id="completedPuzzleContainer" prefHeight="158.0" prefWidth="158.0">
+            <Pane fx:id="completedPuzzleContainer" prefHeight="158.0" prefWidth="158.0" style="-fx-border-width: 2; -fx-border-color: white;">
                <children>
                   <!--<ImageView fitHeight="184.0" fitWidth="183.0" pickOnBounds="true" preserveRatio="true">
                      <image>

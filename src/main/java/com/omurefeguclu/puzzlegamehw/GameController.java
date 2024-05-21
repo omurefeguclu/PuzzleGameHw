@@ -64,9 +64,16 @@ public class GameController {
     private void Shuffle(){
         Random random = new Random();
 
+        int lastMovement = -1, movement;
         int i = 0;
         while(i++ < 1000){
-            int movement = random.nextInt(4);
+            movement = random.nextInt(4);
+            if(movement > 1 && lastMovement > 1 || movement < 2 && lastMovement < 2)
+            {
+                if(lastMovement - movement != 0)
+                    continue;
+            }
+            lastMovement = movement;
 
             switch(movement)
             {

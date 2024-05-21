@@ -14,7 +14,7 @@ public class PuzzleGameApplication extends Application {
     private static Scene mainMenuScene;
 
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(Stage stage) {
         primaryStage = stage;
         GameManager.getInstance().createPuzzles();
 
@@ -58,17 +58,14 @@ public class PuzzleGameApplication extends Application {
             controller.closeButton.setOnMouseClicked(e -> {
                 this.OpenMainMenu();
             });
-            scene.setOnKeyReleased(new EventHandler<KeyEvent>() {
-                @Override
-                public void handle(KeyEvent event) {
-                    System.out.println(event.getCode());
+            scene.setOnKeyReleased(event -> {
+                System.out.println(event.getCode());
 
-                    switch (event.getCode()) {
-                        case UP:    controller.OnVerticalMoveInput(true); break;
-                        case DOWN:  controller.OnVerticalMoveInput(false); break;
-                        case LEFT:  controller.OnHorizontalMoveInput(false); break;
-                        case RIGHT: controller.OnHorizontalMoveInput(true); break;
-                    }
+                switch (event.getCode()) {
+                    case UP:    controller.OnVerticalMoveInput(true); break;
+                    case DOWN:  controller.OnVerticalMoveInput(false); break;
+                    case LEFT:  controller.OnHorizontalMoveInput(false); break;
+                    case RIGHT: controller.OnHorizontalMoveInput(true); break;
                 }
             });
 
