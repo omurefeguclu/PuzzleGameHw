@@ -8,6 +8,8 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.HBox?>
 <AnchorPane prefHeight="400.0" prefWidth="555.0" styleClass="background" stylesheets="@../styles/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.omurefeguclu.puzzlegamehw.GameController">
    <children>
       <AnchorPane fx:id="puzzleContainer" layoutX="50.0" layoutY="50.0" prefHeight="300.0" prefWidth="300.0" />
@@ -45,5 +47,43 @@
             </Pane>
          </children>
       </VBox>
+       <StackPane visible="false" fx:id="gameOverOverlay" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0"
+             style="-fx-background-color: rgba(0,0,0,0.4);" alignment="CENTER">
+          <VBox alignment="CENTER" spacing="0">
+             <children>
+                <Text fx:id="gameOverText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 16pt;" styleClass="wooden-font" text="GAME OVER!" textAlignment="CENTER" />
+                <StackPane fx:id="replayButton" prefHeight="150.0" prefWidth="200.0">
+                   <children>
+                      <ImageView fitHeight="70.0" fitWidth="160.0">
+                         <image>
+                            <Image url="@../ui/Btn_OtherButton_Polygon02.png" />
+                         </image>
+                      </ImageView>
+                      <Text fill="WHITE" styleClass="wooden-font" style="-fx-font-size: 12pt;" strokeType="OUTSIDE" strokeWidth="0.0" text="REPLAY!" textAlignment="CENTER" wrappingWidth="85.0107421875" StackPane.alignment="CENTER">
+                         <StackPane.margin>
+                            <Insets top="-12.0" />
+                         </StackPane.margin>
+                      </Text>
+                   </children>
+                </StackPane>
+                <StackPane fx:id="backToMainMenuButton" prefHeight="150.0" prefWidth="200.0">
+                   <children>
+                      <ImageView fitHeight="70.0" fitWidth="160.0">
+                         <image>
+                            <Image url="@../ui/Btn_OtherButton_Polygon02.png" />
+                         </image>
+                      </ImageView>
+                      <Text fill="WHITE" styleClass="wooden-font" style="-fx-font-size: 12pt;" strokeType="OUTSIDE" strokeWidth="0.0" text="BACK TO MENU" textAlignment="CENTER" wrappingWidth="85.0107421875" StackPane.alignment="CENTER">
+                         <StackPane.margin>
+                            <Insets top="-12.0" />
+                         </StackPane.margin>
+                      </Text>
+                   </children>
+                </StackPane>
+             </children>
+
+          </VBox>
+
+       </StackPane>
    </children>
 </AnchorPane>

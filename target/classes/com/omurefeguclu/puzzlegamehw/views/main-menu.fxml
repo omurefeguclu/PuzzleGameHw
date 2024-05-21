@@ -16,9 +16,9 @@
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
 
-   <ImageView fitHeight="92.0" fitWidth="239.0" pickOnBounds="true" smooth="false">
+   <ImageView fitHeight="128.0" preserveRatio="true" pickOnBounds="true" smooth="false">
       <image>
-         <Image url="@../logo-fake.png" />
+         <Image url="@../Logo_New.png" />
       </image>
    </ImageView>
    <HBox alignment="CENTER" prefHeight="151.0" prefWidth="318.0" spacing="16.0">

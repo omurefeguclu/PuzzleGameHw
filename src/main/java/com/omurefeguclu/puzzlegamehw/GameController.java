@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 
@@ -78,19 +79,44 @@ public class GameController {
             switch(movement)
             {
                 case 0:
-                    OnHorizontalMoveInput(true);
+                    MakeMovement(1, 0);
                     break;
                 case 1:
-                    OnHorizontalMoveInput(false);
+                    MakeMovement(-1, 0);
                     break;
                 case 2:
-                    OnVerticalMoveInput(true);
+                    MakeMovement(0, 1);
                     break;
                 case 3:
-                    OnVerticalMoveInput(false);
+                    MakeMovement(0, -1);
                     break;
             }
         }
+    }
+
+    private void MakeMovement(int x, int y){
+
+        if(x != 0){
+            if(x == -1 && blankPuzzleSlotX == 0)
+                return;
+            if(x == 1 && blankPuzzleSlotX == currentPuzzle.getPuzzleSize() - 1)
+                return;
+        }
+        if(y != 0){
+            if(y == -1 && blankPuzzleSlotY==0)
+                return;
+            if(y == 1 && blankPuzzleSlotY == currentPuzzle.getPuzzleSize() - 1)
+                return;
+        }
+
+        PuzzlePieceButton currentPiece = puzzleGrid.getButton(blankPuzzleSlotX + x, blankPuzzleSlotY + y);
+
+        currentPiece.SetPosition(blankPuzzleSlotX, blankPuzzleSlotY);
+
+
+        blankPuzzleSlotX += x;
+        blankPuzzleSlotY += y;
+
     }
 
     public void OnHorizontalMoveInput(boolean right) {
@@ -99,24 +125,10 @@ public class GameController {
 
 
         if(right) {
-            if(blankPuzzleSlotX==0)
-                return;
-
-            PuzzlePieceButton currentPiece = puzzleGrid.getButton(blankPuzzleSlotX - 1, blankPuzzleSlotY);
-
-            currentPiece.SetPosition(blankPuzzleSlotX, blankPuzzleSlotY);
-
-            blankPuzzleSlotX--;
+            MakeMovement(-1, 0);
         }
         else {
-            if(blankPuzzleSlotX == currentPuzzle.getPuzzleSize() - 1)
-                return;
-
-            PuzzlePieceButton currentPiece = puzzleGrid.getButton(blankPuzzleSlotX + 1, blankPuzzleSlotY);
-
-            currentPiece.SetPosition(blankPuzzleSlotX, blankPuzzleSlotY);
-
-            blankPuzzleSlotX++;
+            MakeMovement(1, 0);
         }
 
         ProMovement();
@@ -126,25 +138,10 @@ public class GameController {
             return;
 
         if(!up) {
-            if(blankPuzzleSlotY==0)
-                return;
-
-            PuzzlePieceButton currentPiece = puzzleGrid.getButton(blankPuzzleSlotX, blankPuzzleSlotY - 1);
-
-            currentPiece.SetPosition(blankPuzzleSlotX, blankPuzzleSlotY);
-
-            blankPuzzleSlotY--;
+            MakeMovement(0, -1);
         }
         else {
-            if(blankPuzzleSlotY == currentPuzzle.getPuzzleSize() - 1)
-                return;
-
-
-            PuzzlePieceButton currentPiece = puzzleGrid.getButton(blankPuzzleSlotX, blankPuzzleSlotY + 1);
-
-            currentPiece.SetPosition(blankPuzzleSlotX, blankPuzzleSlotY);
-
-            blankPuzzleSlotY++;
+            MakeMovement(0, 1);
         }
 
         ProMovement();
@@ -162,7 +159,10 @@ public class GameController {
     {
         this.gameActive = false;
 
-        System.out.println("Game Over! YOU LOST");
+        gameOverOverlay.setVisible(true);
+
+        gameOverText.setText("Game Over!\n YOU LOST");
+
         timeText.setText("Game Over!\n YOU LOST");
     }
     private void ProMovement()
@@ -170,8 +170,12 @@ public class GameController {
         if(this.puzzleGrid.isCorrect()){
             this.gameActive = false;
 
-            System.out.println("Game Over! YOU WIN");
-            timeText.setText("Game Over!\n YOU WIN");
+            gameOverOverlay.setVisible(true);
+
+            timerTimeline.stop();
+            gameOverText.setText("YAYY!\n YOU WIN");
+
+            timeText.setText("YAYY!\n YOU WIN");
         }
 
     }
@@ -184,4 +188,13 @@ public class GameController {
     public Pane closeButton;
     @FXML
     private Text timeText;
+    @FXML
+    private Text gameOverText;
+
+    @FXML
+    private StackPane gameOverOverlay;
+    @FXML
+    public StackPane replayButton;
+    @FXML
+    public StackPane backToMainMenuButton;
 }

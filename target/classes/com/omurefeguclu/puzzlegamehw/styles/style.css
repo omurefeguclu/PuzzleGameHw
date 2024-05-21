@@ -21,15 +21,25 @@
 }
 
 .number-puzzle-button {
-    -fx-background-image: url('../ui/wooden-button-frame.png');
+    -fx-background-image: url('../ui/yellowBtnNormal.png');
     -fx-background-position: center center;
     -fx-background-repeat: no-repeat;
-    -fx-background-size: 120% 120%;
+    -fx-background-size: 100% 100%;
     -fx-background-radius: 0;
     -fx-border-radius: 0;
     -fx-font-family: 'Bungee Spice Regular';
     -fx-font-weight: 400;
     -fx-font-style: normal;
     -fx-font-size: 12px;
-    -fx-text-fill: #9E500E;
+    /*-fx-text-fill: #9E500E;*/
+    -fx-text-fill: #fff;
+}
+.number-puzzle-button-text {
+    -fx-font-family: 'Bungee Spice Regular';
+    -fx-font-weight: 400;
+    -fx-font-style: normal;
+    -fx-font-size: 18px;
+    /*-fx-text-fill: #9E500E;*/
+    -fx-text-fill: #fff;
+    -fx-fill: #fff;
 }

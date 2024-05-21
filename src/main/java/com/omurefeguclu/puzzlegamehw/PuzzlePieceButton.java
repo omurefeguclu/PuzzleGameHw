@@ -1,21 +1,34 @@
 package com.omurefeguclu.puzzlegamehw;
 
+import javafx.geometry.Pos;
 import javafx.geometry.Side;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 
-public class PuzzlePieceButton extends Button {
+public class PuzzlePieceButton extends StackPane {
 
     public int positionX, positionY;
     public int correctPositionX, correctPositionY;
 
+    public Text text;
 
     public PuzzlePieceButton(String num, int correctPositionX, int correctPositionY) {
 
         this.getStyleClass().add("number-puzzle-button");
-        this.setText(num);
+
+        text = new Text();
+
+        text.getStyleClass().add("number-puzzle-button-text");
+        text.setTextAlignment(TextAlignment.CENTER);
+        text.setText(num);
+
+        StackPane.setAlignment(text, Pos.CENTER);
+
+        this.getChildren().add(text);
 
         InitPosition(correctPositionX, correctPositionY);
     }
