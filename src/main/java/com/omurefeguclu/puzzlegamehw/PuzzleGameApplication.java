@@ -21,9 +21,27 @@ public class PuzzleGameApplication extends Application {
         primaryStage = stage;
         primaryStage.setResizable(false);
 
+        SettingsManager.getInstance().Initialize();
+
+        StartGameMusic();
+
+        GameManager.getInstance().createPuzzles();
+
+        OpenMainMenu();
+
+        primaryStage.show();
+    }
+
+    private void StartGameMusic(){
         Media gameMusicMedia = new Media(getClass().getResource("game_music.mp3").toExternalForm());
 
         MediaPlayer mediaPlayer = new MediaPlayer(gameMusicMedia);
+
+        mediaPlayer.setVolume(SettingsManager.getInstance().getMusicVolume() / 100.0);
+        SettingsManager.getInstance().getMusicVolumeProperty()
+                        .addListener((observable, oldValue, newValue) -> {
+                            mediaPlayer.setVolume((double)newValue.intValue() / 100.0);
+                        });
 
         mediaPlayer.setAutoPlay(true);
         mediaPlayer.setOnEndOfMedia(new Runnable() {
@@ -33,12 +51,6 @@ public class PuzzleGameApplication extends Application {
                 mediaPlayer.play();
             }
         });
-
-        GameManager.getInstance().createPuzzles();
-
-        OpenMainMenu();
-
-        primaryStage.show();
     }
 
     public void OpenMainMenu() {
@@ -61,7 +73,22 @@ public class PuzzleGameApplication extends Application {
         }
 
     }
+    public void OpenSettings(){
+        try{
+            FXMLLoader fxmlLoader = new FXMLLoader(PuzzleGameApplication.class.getResource("views/settings-screen.fxml"));
+            Scene scene = new Scene(fxmlLoader.load());
 
+            SettingsController controller = fxmlLoader.getController();
+
+            controller.backToMainMenuButton.setOnMouseClicked(e->{
+                this.OpenMainMenu();
+            });
+            primaryStage.setScene(scene);
+        }
+        catch(IOException exception) {
+            System.out.println("Start New Game: ioexception");
+        }
+    }
     private void OpenGameScene(){
         try{
             FXMLLoader fxmlLoader = new FXMLLoader(PuzzleGameApplication.class.getResource("views/game-screen.fxml"));

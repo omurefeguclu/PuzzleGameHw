@@ -12,12 +12,15 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.media.AudioClip;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 
 import java.util.Random;
 
 public class GameController {
+
+    private AudioClip buzzSound;
 
     private Puzzle currentPuzzle;
     private int blankPuzzleSlotX, blankPuzzleSlotY;
@@ -30,6 +33,14 @@ public class GameController {
 
     @FXML private void initialize()
     {
+        buzzSound = new AudioClip(getClass().getResource("sfx/buzz-beep-sound.mp3").toExternalForm());
+        buzzSound.setVolume((double)SettingsManager.getInstance().getSFXVolume() / 100.0);
+        /*SettingsManager.getInstance().getSFXVolumeProperty().addListener(
+                (observable, oldValue, newValue) -> {
+                    buzzSound.setVolume((double)newValue.intValue() / 100.0);
+                }
+        );*/
+
         currentPuzzle = GameManager.getInstance().currentPuzzle;
 
         this.blankPuzzleSlotX = this.blankPuzzleSlotY = currentPuzzle.getPuzzleSize() - 1;
@@ -79,34 +90,34 @@ public class GameController {
             switch(movement)
             {
                 case 0:
-                    MakeMovement(1, 0);
+                    TryMakeMovement(1, 0);
                     break;
                 case 1:
-                    MakeMovement(-1, 0);
+                    TryMakeMovement(-1, 0);
                     break;
                 case 2:
-                    MakeMovement(0, 1);
+                    TryMakeMovement(0, 1);
                     break;
                 case 3:
-                    MakeMovement(0, -1);
+                    TryMakeMovement(0, -1);
                     break;
             }
         }
     }
 
-    private void MakeMovement(int x, int y){
+    private boolean TryMakeMovement(int x, int y){
 
         if(x != 0){
             if(x == -1 && blankPuzzleSlotX == 0)
-                return;
+                return false;
             if(x == 1 && blankPuzzleSlotX == currentPuzzle.getPuzzleSize() - 1)
-                return;
+                return false;
         }
         if(y != 0){
             if(y == -1 && blankPuzzleSlotY==0)
-                return;
+                return false;
             if(y == 1 && blankPuzzleSlotY == currentPuzzle.getPuzzleSize() - 1)
-                return;
+                return false;
         }
 
         PuzzlePieceButton currentPiece = puzzleGrid.getButton(blankPuzzleSlotX + x, blankPuzzleSlotY + y);
@@ -117,18 +128,18 @@ public class GameController {
         blankPuzzleSlotX += x;
         blankPuzzleSlotY += y;
 
+        return true;
     }
 
     public void OnHorizontalMoveInput(boolean right) {
         if(!gameActive)
             return;
 
+        boolean success = right ? TryMakeMovement(-1, 0): TryMakeMovement(1, 0);
 
-        if(right) {
-            MakeMovement(-1, 0);
-        }
-        else {
-            MakeMovement(1, 0);
+        if(!success){
+            //ERROR
+            buzzSound.play();
         }
 
         ProMovement();
@@ -137,11 +148,11 @@ public class GameController {
         if(!gameActive)
             return;
 
-        if(!up) {
-            MakeMovement(0, -1);
-        }
-        else {
-            MakeMovement(0, 1);
+        boolean success = up ? TryMakeMovement(0, 1) : TryMakeMovement(0, -1);
+
+        if(!success){
+            //ERROR
+            buzzSound.play();
         }
 
         ProMovement();

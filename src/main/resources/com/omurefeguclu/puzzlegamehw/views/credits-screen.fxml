@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<VBox alignment="TOP_CENTER" prefHeight="524.0" prefWidth="402.0" spacing="28.0" styleClass="background" stylesheets="@../styles/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+
+   <ImageView fitHeight="128.0" pickOnBounds="true" preserveRatio="true" smooth="false">
+      <image>
+         <Image url="@../Logo_New.png" />
+      </image>
+   </ImageView>
+   <Label alignment="TOP_CENTER" contentDisplay="CENTER" maxWidth="290.0" prefHeight="272.0" prefWidth="290.0" style="-fx-text-fill: #fff;" styleClass="wooden-font" text="HOW TO PLAY&#10;&#10;The pieces are to be pushed around over the board until the picture or number order is complete.&#10;&#10;&#10;CREDITS&#10;&#10;ÖMÜR EFE GÜÇLÜ&#10;AYTAN GURBANOVA&#10;MERİÇ KILIÇ&#10;AYBARS ALPER&#10;EREN KARAKAŞ" textAlignment="CENTER" wrapText="true" />
+   <StackPane fx:id="backToMainMenuButton" prefHeight="83.0" prefWidth="362.0">
+      <children>
+         <ImageView fitHeight="70.0" fitWidth="160.0">
+            <image>
+               <Image url="@../ui/Btn_OtherButton_Polygon02.png" />
+            </image>
+         </ImageView>
+         <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 12pt;" styleClass="wooden-font" text="BACK TO MENU" textAlignment="CENTER" wrappingWidth="85.0107421875" StackPane.alignment="CENTER">
+            <StackPane.margin>
+               <Insets top="-12.0" />
+            </StackPane.margin>
+         </Text>
+      </children>
+   </StackPane>
+</VBox>
