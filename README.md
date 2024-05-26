@@ -1,4 +1,4 @@
-## ***Here is our CMPE114 Sliding Puzzle Game project using JavaFx.***
+## ***Here is the CMPE114 Sliding Puzzle Game project using JavaFx.***
 
 ### Controls:
 * Use Arrow Keys to move the tiles to the blank space to solve the puzzle.
