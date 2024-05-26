@@ -77,4 +77,6 @@ public class MainMenuController {
 
     @FXML private AnchorPane puzzlesContainer;
     @FXML public StackPane playButton;
+    @FXML public Pane settingsButton;
+    @FXML public Pane creditsButton;
 }

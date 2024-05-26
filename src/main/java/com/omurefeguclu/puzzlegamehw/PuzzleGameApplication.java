@@ -65,6 +65,13 @@ public class PuzzleGameApplication extends Application {
             controller.playButton.setOnMouseClicked(e -> {
                 this.StartNewGame(controller.getSelectedPuzzleIndex());
             });
+            controller.settingsButton.setOnMouseClicked(e -> {
+                System.out.println("settings clicked");
+                this.OpenSettings();
+            });
+            controller.creditsButton.setOnMouseClicked(e -> {
+                this.OpenCredits();
+            });
 
             primaryStage.setScene(scene);
         }
@@ -79,6 +86,22 @@ public class PuzzleGameApplication extends Application {
             Scene scene = new Scene(fxmlLoader.load());
 
             SettingsController controller = fxmlLoader.getController();
+
+            controller.backToMainMenuButton.setOnMouseClicked(e->{
+                this.OpenMainMenu();
+            });
+            primaryStage.setScene(scene);
+        }
+        catch(IOException exception) {
+            System.out.println("Start New Game: ioexception");
+        }
+    }
+    public void OpenCredits(){
+        try{
+            FXMLLoader fxmlLoader = new FXMLLoader(PuzzleGameApplication.class.getResource("views/credits-screen.fxml"));
+            Scene scene = new Scene(fxmlLoader.load());
+
+            CreditsController controller = fxmlLoader.getController();
 
             controller.backToMainMenuButton.setOnMouseClicked(e->{
                 this.OpenMainMenu();
