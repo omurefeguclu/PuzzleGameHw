@@ -20,18 +20,23 @@ public class PuzzleGameApplication extends Application {
     public void start(Stage stage) {
         primaryStage = stage;
         primaryStage.setResizable(false);
+        primaryStage.setTitle("Puzzle Game");
 
+        //INITIALIZE SETTINGS
         SettingsManager.getInstance().Initialize();
 
         StartGameMusic();
 
+        //INITIALIZE PUZZLES
         GameManager.getInstance().createPuzzles();
 
+        //SHOW INITIAL SCENE
         OpenMainMenu();
 
         primaryStage.show();
     }
 
+    //THIS METHOD INITIALIZES GAME MUSIC
     private void StartGameMusic(){
         Media gameMusicMedia = new Media(getClass().getResource("game_music.mp3").toExternalForm());
 
@@ -62,6 +67,7 @@ public class PuzzleGameApplication extends Application {
 
             MainMenuController controller = fxmlLoader.getController();
 
+            //BIND BUTTON CLICK EVENTS
             controller.playButton.setOnMouseClicked(e -> {
                 this.StartNewGame(controller.getSelectedPuzzleIndex());
             });
@@ -103,9 +109,11 @@ public class PuzzleGameApplication extends Application {
 
             CreditsController controller = fxmlLoader.getController();
 
+            //BIND BUTTON CLICK EVENTS
             controller.backToMainMenuButton.setOnMouseClicked(e->{
                 this.OpenMainMenu();
             });
+
             primaryStage.setScene(scene);
         }
         catch(IOException exception) {
@@ -119,6 +127,7 @@ public class PuzzleGameApplication extends Application {
 
             GameController controller = fxmlLoader.getController();
 
+            //BIND BUTTON CLICK EVENTS
             controller.closeButton.setOnMouseClicked(e -> {
                 this.OpenMainMenu();
             });
@@ -128,6 +137,9 @@ public class PuzzleGameApplication extends Application {
             controller.replayButton.setOnMouseClicked(e -> {
                 this.OpenGameScene();
             });
+
+
+            //BIND KEYBOARD EVENTS
             scene.setOnKeyReleased(event -> {
                 System.out.println(event.getCode());
 
@@ -146,8 +158,8 @@ public class PuzzleGameApplication extends Application {
         }
     }
     public void StartNewGame(int puzzleIndex){
+        //PASSES THE SELECTED PUZZLE TO GAME SCENE
         Puzzle puzzle = GameManager.getInstance().getPuzzles()[puzzleIndex];
-
         GameManager.getInstance().currentPuzzle = puzzle;
 
         OpenGameScene();

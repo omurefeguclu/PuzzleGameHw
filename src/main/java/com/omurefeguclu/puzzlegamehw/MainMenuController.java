@@ -20,31 +20,9 @@ public class MainMenuController {
     @FXML private void initialize(){
         Puzzle[] puzzles = GameManager.getInstance().getPuzzles();
 
-        for (int x = 0; x < puzzles.length; x++) {
-            Puzzle puzzle = puzzles[x];
-
-            if(puzzle == null)
-            {
-                continue;
-            }
-
-            GridPane puzzleGrid = new GridPane();
-
-            /*puzzleGrid.setHgap(1);
-            puzzleGrid.setVgap(1);*/
-            puzzleGrid.setPrefSize(puzzlesContainer.getPrefWidth(), puzzlesContainer.getPrefHeight());
-
-
-            int pieceCount = (puzzle.getPuzzleSize() * puzzle.getPuzzleSize()) - 1;
-            double pieceSize = puzzlesContainer.getPrefWidth() / puzzle.getPuzzleSize();
-
-            for(int i = 0; i < pieceCount; i++) {
-                PuzzlePieceButton button = puzzle.getPuzzleButton(i);
-
-                button.setMinSize(pieceSize, pieceSize);
-
-                puzzleGrid.add(button, button.correctPositionX, button.correctPositionY);
-            }
+        //BUILD PUZZLE SLIDER UI
+        for (Puzzle puzzle : puzzles) {
+            PuzzleGrid puzzleGrid = new PuzzleGrid(puzzle, puzzlesContainer.getPrefWidth());
 
             puzzlesContainer.getChildren().add(puzzleGrid);
         }
@@ -52,6 +30,7 @@ public class MainMenuController {
         refreshPuzzleSlider();
     }
 
+    //START REGION: PUZZLE SLIDER
     @FXML private void advancePuzzle(){
         activePuzzleSliderIndex++;
 
@@ -74,7 +53,9 @@ public class MainMenuController {
             puzzlesContainer.getChildren().get(i).setVisible(activePuzzleSliderIndex == i);
         }
     }
+    //END REGION: PUZZLE SLIDER
 
+    //SCENE COMPONENTS
     @FXML private AnchorPane puzzlesContainer;
     @FXML public StackPane playButton;
     @FXML public Pane settingsButton;

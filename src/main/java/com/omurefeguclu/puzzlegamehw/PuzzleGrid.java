@@ -29,18 +29,6 @@ public class PuzzleGrid extends GridPane {
         }
     }
 
-    public void Shuffle(){
-        List<PuzzlePieceButton> children = this.getManagedChildren();
-        Collections.shuffle(children);
-
-        for(int i = 0; i < children.size(); i++) {
-            PuzzlePieceButton button = children.get(i);
-            if(button == null)
-                continue;
-
-            button.SetPosition(i % PUZZLE_SIZE, i / PUZZLE_SIZE);
-        }
-    }
     public PuzzlePieceButton getButton(int x, int y) {
         PuzzlePieceButton result = null;
         ObservableList<Node> children = this.getChildren();

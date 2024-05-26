@@ -33,32 +33,44 @@ public class GameController {
 
     @FXML private void initialize()
     {
-        buzzSound = new AudioClip(getClass().getResource("sfx/buzz-beep-sound.mp3").toExternalForm());
-        buzzSound.setVolume((double)SettingsManager.getInstance().getSFXVolume() / 100.0);
-        /*SettingsManager.getInstance().getSFXVolumeProperty().addListener(
-                (observable, oldValue, newValue) -> {
-                    buzzSound.setVolume((double)newValue.intValue() / 100.0);
-                }
-        );*/
-
+        //RECEIVE SELECTED PUZZLE FROM TRANSPORTER
         currentPuzzle = GameManager.getInstance().currentPuzzle;
 
-        this.blankPuzzleSlotX = this.blankPuzzleSlotY = currentPuzzle.getPuzzleSize() - 1;
-        puzzleGrid = new PuzzleGrid(currentPuzzle, puzzleContainer.getPrefWidth());
+        InitializeSFX();
 
-        //puzzleGrid.Shuffle();
+        InitializePuzzle();
+
+        InitializeCompletedPuzzle();
+
+        InitializeTimer();
+    }
+
+    private void InitializeSFX(){
+        buzzSound = new AudioClip(getClass().getResource("sfx/buzz-beep-sound.mp3").toExternalForm());
+        buzzSound.setVolume((double)SettingsManager.getInstance().getSFXVolume() / 100.0);
+    }
+    private void InitializePuzzle()
+    {
+        //SET BLANK SPOTS FOR FUNCTIONALITY
+        this.blankPuzzleSlotX = this.blankPuzzleSlotY = currentPuzzle.getPuzzleSize() - 1;
+
+        puzzleGrid = new PuzzleGrid(currentPuzzle, puzzleContainer.getPrefWidth());
         Shuffle();
 
+        //PUZZLE PIECE SHIFTING ANIMATION
         LayoutAnimator animator = new LayoutAnimator();
         animator.observe(puzzleGrid.getChildren());
 
         puzzleContainer.getChildren().add(puzzleGrid);
-
-
+    }
+    private void InitializeCompletedPuzzle()
+    {
         PuzzleGrid completedPuzzleGrid = new PuzzleGrid(currentPuzzle, completedPuzzleContainer.getPrefWidth());
         completedPuzzleContainer.getChildren().add(completedPuzzleGrid);
-
+    }
+    private void InitializeTimer(){
         UpdateTimer();
+
         timerTimeline = new Timeline();
         timerTimeline.setCycleCount(Timeline.INDEFINITE);
         timerTimeline.getKeyFrames().add(
@@ -73,6 +85,7 @@ public class GameController {
         timerTimeline.playFromStart();
     }
 
+    //SHUFFLE METHOD: MAKES RANDOM MOVEMENT 1000 TIMES
     private void Shuffle(){
         Random random = new Random();
 
@@ -106,7 +119,7 @@ public class GameController {
     }
 
     private boolean TryMakeMovement(int x, int y){
-
+        //MOVEMENT VALIDATION RETURNS FALSE IF INVALID
         if(x != 0){
             if(x == -1 && blankPuzzleSlotX == 0)
                 return false;
@@ -120,14 +133,15 @@ public class GameController {
                 return false;
         }
 
+        //MOVE PIECE
         PuzzlePieceButton currentPiece = puzzleGrid.getButton(blankPuzzleSlotX + x, blankPuzzleSlotY + y);
-
         currentPiece.SetPosition(blankPuzzleSlotX, blankPuzzleSlotY);
 
-
+        //ADJUST BLANK SLOT
         blankPuzzleSlotX += x;
         blankPuzzleSlotY += y;
 
+        //MOVEMENT SUCCEEDED RETURNS TRUE
         return true;
     }
 
@@ -191,19 +205,24 @@ public class GameController {
 
     }
 
+
+    //SCENE COMPONENTS
+
     @FXML
     private AnchorPane puzzleContainer;
     @FXML
     private Pane completedPuzzleContainer;
-    @FXML
-    public Pane closeButton;
-    @FXML
-    private Text timeText;
-    @FXML
-    private Text gameOverText;
 
     @FXML
+    private Text timeText;
+
+    @FXML
+    private Text gameOverText;
+    @FXML
     private StackPane gameOverOverlay;
+
+    @FXML
+    public Pane closeButton;
     @FXML
     public StackPane replayButton;
     @FXML

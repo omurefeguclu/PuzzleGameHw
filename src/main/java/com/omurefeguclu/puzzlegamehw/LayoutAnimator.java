@@ -4,7 +4,6 @@ import javafx.animation.Transition;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.value.*;
 import javafx.collections.*;
-import javafx.event.*;
 import javafx.scene.Node;
 import javafx.scene.transform.Translate;
 import javafx.util.Duration;
@@ -19,13 +18,13 @@ import java.util.*;
  */
 public class LayoutAnimator implements ChangeListener<Number>, ListChangeListener<Node> {
 
-  private Map<Node, MoveXTransition> nodeXTransitions = new HashMap<>();
-  private Map<Node, MoveYTransition> nodeYTransitions = new HashMap<>();
+  private final Map<Node, MoveXTransition> nodeXTransitions = new HashMap<>();
+  private final Map<Node, MoveYTransition> nodeYTransitions = new HashMap<>();
 
   /**
    * Animates all the children of a Region.
    * <code>
-   *   VBox myVbox = new VBox();
+   *   GridPane myVbox = new GridPane();
    *   LayoutAnimator animator = new LayoutAnimator();
    *   animator.observe(myVbox.getChildren());
    * </code>
@@ -59,31 +58,29 @@ public class LayoutAnimator implements ChangeListener<Number>, ListChangeListene
     final DoubleProperty doubleProperty = (DoubleProperty) ov;
     final Node node = (Node) doubleProperty.getBean();
 
-    switch (doubleProperty.getName()) {
-      case "layoutX":
-        MoveXTransition tx = nodeXTransitions.get(node);
-        if (tx == null) {
-          tx = new MoveXTransition(node);
-          nodeXTransitions.put(node, tx);
-        }
-        tx.setFromX(tx.getTranslateX() - delta);
+      // "layoutY"
+      if (doubleProperty.getName().equals("layoutX")) {
+          MoveXTransition tx = nodeXTransitions.get(node);
+          if (tx == null) {
+              tx = new MoveXTransition(node);
+              nodeXTransitions.put(node, tx);
+          }
+          tx.setFromX(tx.getTranslateX() - delta);
 
-        tx.playFromStart();
-        break;
+          tx.playFromStart();
+      } else {
+          MoveYTransition ty = nodeYTransitions.get(node);
+          if (ty == null) {
+              ty = new MoveYTransition(node);
+              nodeYTransitions.put(node, ty);
+          }
+          ty.setFromY(ty.getTranslateY() - delta);
 
-      default: // "layoutY"
-        MoveYTransition ty = nodeYTransitions.get(node);
-        if (ty == null) {
-          ty = new MoveYTransition(node);
-          nodeYTransitions.put(node, ty);
-        }
-        ty.setFromY(ty.getTranslateY() - delta);
-
-        ty.playFromStart();
-    }
+          ty.playFromStart();
+      }
   }
 
-  private abstract class MoveTransition extends Transition {
+  private abstract static class MoveTransition extends Transition {
     private final Duration MOVEMENT_ANIMATION_DURATION = new Duration(150);
 
     protected final Translate translate;
@@ -104,7 +101,7 @@ public class LayoutAnimator implements ChangeListener<Number>, ListChangeListene
     }
   }
 
-  private class MoveXTransition extends MoveTransition {
+  private static class MoveXTransition extends MoveTransition {
     private double fromX;
 
     public MoveXTransition(final Node node) {
@@ -121,7 +118,7 @@ public class LayoutAnimator implements ChangeListener<Number>, ListChangeListene
     }
   }
 
-  private class MoveYTransition extends MoveTransition {
+  private static class MoveYTransition extends MoveTransition {
     private double fromY;
 
     public MoveYTransition(final Node node) {
@@ -152,6 +149,4 @@ public class LayoutAnimator implements ChangeListener<Number>, ListChangeListene
       }
     }
   }
-
-  // todo unobserving nodes should cleanup any intermediate transitions they may have and ensure they are removed from transition cache to prevent memory leaks.
 }
