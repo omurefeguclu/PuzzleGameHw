@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<?import javafx.scene.layout.Pane?>
+<AnchorPane prefHeight="343.0" prefWidth="402.0" styleClass="background" stylesheets="@../styles/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainMenuController">
+   <VBox alignment="TOP_CENTER" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <padding>
+         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+      </padding>
+
+      <ImageView fitHeight="128.0" pickOnBounds="true" preserveRatio="true" smooth="false">
+         <image>
+            <Image url="@../Logo_New.png" />
+         </image>
+      </ImageView>
+      <HBox alignment="CENTER" prefHeight="151.0" prefWidth="318.0" spacing="16.0">
+         <children>
+            <Button graphicTextGap="0.0" maxHeight="64.0" maxWidth="64.0" mnemonicParsing="false" onAction="#rollbackPuzzle" prefHeight="64.0" prefWidth="64.0" style="-fx-background-color: transparent;">
+               <graphic>
+                  <ImageView fitHeight="64.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../ui/wooden-theme-arrow-left.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <AnchorPane fx:id="puzzlesContainer" prefHeight="155.0" prefWidth="130.0">
+            </AnchorPane>
+            <Button layoutX="10.0" layoutY="49.0" maxHeight="64.0" maxWidth="64.0" mnemonicParsing="false" onAction="#advancePuzzle" prefHeight="64.0" prefWidth="64.0" style="-fx-background-color: transparent;">
+               <graphic>
+                  <ImageView fitHeight="64.0" fitWidth="64.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../ui/wooden-theme-arrow-left.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </HBox>
+      <StackPane fx:id="playButton" prefHeight="150.0" prefWidth="200.0">
+         <children>
+            <ImageView fitHeight="70.0" fitWidth="160.0">
+               <image>
+                  <Image url="@../ui/Btn_OtherButton_Polygon02.png" />
+               </image>
+            </ImageView>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 18pt;" styleClass="wooden-font" text="PLAY!" textAlignment="CENTER" wrappingWidth="85.0107421875" StackPane.alignment="CENTER">
+               <StackPane.margin>
+                  <Insets top="-12.0" />
+               </StackPane.margin>
+            </Text>
+         </children>
+      </StackPane>
+   </VBox>
+   <Pane fx:id="settingsButton" layoutX="8.0" layoutY="3.0" prefHeight="40.0" prefWidth="40.0" AnchorPane.leftAnchor="8.0" AnchorPane.topAnchor="8.0">
+      <children>
+         <ImageView fitHeight="78.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@../ui/Btn_OtherButton_Circle01_n.png" />
+            </image>
+         </ImageView>
+         <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" scaleX="0.7" scaleY="0.7" scaleZ="0.7">
+            <image>
+               <Image url="@../ui/Settings.png" />
+            </image>
+         </ImageView>
+      </children>
+   </Pane>
+   <Pane fx:id="creditsButton" layoutX="8.0" layoutY="3.0" prefHeight="40.0" prefWidth="40.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="8.0">
+      <children>
+         <ImageView fitHeight="78.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@../ui/Btn_OtherButton_Circle01_n.png" />
+            </image>
+         </ImageView>
+         <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" scaleX="0.7" scaleY="0.7" scaleZ="0.7">
+            <image>
+               <Image url="@../ui/Help.png" />
+            </image>
+         </ImageView>
+      </children>
+   </Pane>
+</AnchorPane>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<?import javafx.scene.layout.StackPane?>
+<VBox alignment="TOP_CENTER" prefHeight="343.0" prefWidth="402.0" spacing="12.0" styleClass="background" stylesheets="@../styles/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SettingsController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+
+   <ImageView fitHeight="128.0" pickOnBounds="true" preserveRatio="true" smooth="false">
+      <image>
+         <Image url="@../Logo_New.png" />
+      </image>
+   </ImageView>
+   <HBox alignment="CENTER_LEFT" prefHeight="33.0" prefWidth="362.0" spacing="12.0">
+      <children>
+         <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 14pt; -fx-fill: #fff;" styleClass="wooden-font" text="Music Volume" />
+         <Slider fx:id="musicVolumeSlider" />
+      </children>
+   </HBox>
+   <HBox alignment="CENTER_LEFT" layoutX="30.0" layoutY="170.0" prefHeight="33.0" prefWidth="362.0" spacing="12.0">
+      <children>
+         <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 14pt; -fx-fill: #fff;" styleClass="wooden-font" text="SFX Volume" />
+         <Slider fx:id="sfxVolumeSlider" />
+      </children>
+   </HBox>
+   <StackPane fx:id="backToMainMenuButton" prefHeight="150.0" prefWidth="200.0">
+      <children>
+         <ImageView fitHeight="70.0" fitWidth="160.0">
+            <image>
+               <Image url="@../ui/Btn_OtherButton_Polygon02.png" />
+            </image>
+         </ImageView>
+         <Text fill="WHITE" styleClass="wooden-font" style="-fx-font-size: 12pt;" strokeType="OUTSIDE" strokeWidth="0.0" text="BACK TO MENU" textAlignment="CENTER" wrappingWidth="85.0107421875" StackPane.alignment="CENTER">
+            <StackPane.margin>
+               <Insets top="-12.0" />
+            </StackPane.margin>
+         </Text>
+      </children>
+   </StackPane>
+</VBox>
