@@ -2,6 +2,10 @@
 
 ![Ekran görüntüsü 2024-05-26 164819](https://github.com/omurefeguclu/PuzzleGameHw/assets/136181066/e0357ab6-cd8d-459a-8764-94716f0c03c5)
 
+### Prerequisities:
+* JDK 1.8.0 (Java 8)
+* Maven
+* JavaFX (usually included in jdk)
 
 ### Controls:
 * Use Arrow Keys to move the tiles to the blank space to solve the puzzle.
